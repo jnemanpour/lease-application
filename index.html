@@ -1,1 +1,493 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Lease Application - The Neman Group</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+        .form-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .form-section h2 {
+            font-size: 1.25rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full { flex: 1 1 100%; }
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #444;
+        }
+        label .required { color: #d32f2f; }
+        input, select, textarea {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a1a2e;
+            box-shadow: 0 0 0 2px rgba(26,26,46,0.1);
+        }
+        textarea { resize: vertical; min-height: 80px; }
+        .applicant-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            background: #fafafa;
+        }
+        .applicant-section h3 {
+            font-size: 1.05rem;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .btn-primary:hover { background: #2a2a4e; }
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .btn-secondary:hover { background: #d0d0d0; }
+        .btn-danger {
+            background: #fff;
+            color: #d32f2f;
+            border: 1px solid #d32f2f;
+        }
+        .btn-danger:hover { background: #ffeaea; }
+        .applicant-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: #2a2a4e; }
+        .disclaimer {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+        .disclaimer label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: #666;
+            cursor: pointer;
+        }
+        .disclaimer input[type="checkbox"] { margin-top: 3px; }
+        .file-input-wrapper label {
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .success-screen .check-icon {
+            width: 80px;
+            height: 80px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .success-screen .check-icon svg { width: 40px; height: 40px; }
+        .success-screen h2 { font-size: 1.5rem; margin-bottom: 10px; color: #1a1a2e; }
+        .success-screen p { color: #666; max-width: 500px; margin: 0 auto; }
+        @media (max-width: 600px) {
+            .form-row { flex-direction: column; gap: 12px; }
+            .container { padding: 12px; }
+            .form-section { padding: 20px; }
+            header { padding: 28px 16px; }
+            header h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Commercial Lease Application</h1>
+        <p>The Neman Group</p>
+    </header>
+
+    <div class="container">
+        <form id="leaseForm" action="https://formsubmit.co/info@thenemangroup.com" method="POST" enctype="multipart/form-data">
+            <!-- FormSubmit Config -->
+            <input type="hidden" name="_subject" value="New Commercial Lease Application">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+            <!-- Business Information -->
+            <div class="form-section">
+                <h2>Business Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Business Name <span class="required">*</span></label>
+                        <input type="text" name="Business Name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Business Type <span class="required">*</span></label>
+                        <select name="Business Type" required>
+                            <option value="">Select...</option>
+                            <option>Retail</option>
+                            <option>Restaurant / Food Service</option>
+                            <option>Office / Professional Services</option>
+                            <option>Medical / Healthcare</option>
+                            <option>Warehouse / Industrial</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Entity Type <span class="required">*</span></label>
+                        <select name="Entity Type" required>
+                            <option value="">Select...</option>
+                            <option>Sole Proprietorship</option>
+                            <option>LLC</option>
+                            <option>Corporation</option>
+                            <option>Partnership</option>
+                            <option>Non-Profit</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>EIN</label>
+                        <input type="text" name="EIN" placeholder="XX-XXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Years in Business <span class="required">*</span></label>
+                        <input type="number" name="Years in Business" min="0" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="url" name="Website" placeholder="https://">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Business Email <span class="required">*</span></label>
+                        <input type="email" name="Business Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Business Phone <span class="required">*</span></label>
+                        <input type="tel" name="Business Phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Business Description <span class="required">*</span></label>
+                        <textarea name="Business Description" rows="3" placeholder="Briefly describe your business and its operations..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Business Address <span class="required">*</span></label>
+                        <input type="text" name="Business Address" placeholder="Street address, City, State, ZIP" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Space Requirements -->
+            <div class="form-section">
+                <h2>Space Requirements</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Desired Square Footage <span class="required">*</span></label>
+                        <input type="number" name="Desired Sq Ft" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Desired Move-in Date <span class="required">*</span></label>
+                        <input type="date" name="Move-in Date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Lease Term <span class="required">*</span></label>
+                        <select name="Lease Term" required>
+                            <option value="">Select...</option>
+                            <option value="1 Year">1 Year</option>
+                            <option value="2 Years">2 Years</option>
+                            <option value="3 Years">3 Years</option>
+                            <option value="4 Years">4 Years</option>
+                            <option value="5 Years">5 Years</option>
+                            <option value="6 Years">6 Years</option>
+                            <option value="7 Years">7 Years</option>
+                            <option value="8 Years">8 Years</option>
+                            <option value="9 Years">9 Years</option>
+                            <option value="10 Years">10 Years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Intended Use of Space <span class="required">*</span></label>
+                        <textarea name="Intended Use" rows="2" placeholder="Describe how you plan to use the space..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Special Requirements</label>
+                        <textarea name="Special Requirements" rows="2" placeholder="Any specific build-out, utility, parking, or other requirements..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applicants -->
+            <div class="form-section">
+                <h2>Applicant Information</h2>
+                <div class="applicant-controls">
+                    <button type="button" class="btn btn-secondary" onclick="addApplicant()">+ Add Applicant</button>
+                    <button type="button" class="btn btn-danger" id="removeBtn" onclick="removeApplicant()" style="display:none">Remove Last Applicant</button>
+                </div>
+                <div id="applicantsContainer">
+                    <!-- Applicant 1 is rendered by default -->
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-section">
+                <h2>Additional Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>How did you hear about this space?</label>
+                        <select name="How Did You Hear">
+                            <option value="">Select...</option>
+                            <option>Online Listing</option>
+                            <option>Referral</option>
+                            <option>Drive-by / Signage</option>
+                            <option>Broker</option>
+                            <option>Social Media</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Additional Notes</label>
+                        <textarea name="Additional Notes" rows="3" placeholder="Anything else you'd like us to know..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authorization & Submit -->
+            <div class="form-section">
+                <div class="disclaimer">
+                    <label>
+                        <input type="checkbox" id="authCheckbox" required>
+                        I authorize The Neman Group and its agents to obtain credit reports, background checks, and verify all information provided in this application. I certify that all information provided is true and complete to the best of my knowledge. I understand that providing false information may result in denial of this application.
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+        </form>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+            <div class="check-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h2>Application Submitted</h2>
+            <p>Thank you for your interest. We have received your commercial lease application and will review it shortly. A member of our team will be in touch.</p>
+        </div>
+    </div>
+
+    <script>
+        let applicantCount = 0;
+
+        function createApplicantHTML(num) {
+            return `
+            <div class="applicant-section" id="applicant-${num}">
+                <h3>Applicant ${num}</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" name="Applicant ${num} First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" name="Applicant ${num} Last Name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="Applicant ${num} Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone <span class="required">*</span></label>
+                        <input type="tel" name="Applicant ${num} Phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="date" name="Applicant ${num} DOB" required>
+                    </div>
+                    <div class="form-group">
+                        <label>SSN (Last 4 Digits) <span class="required">*</span></label>
+                        <input type="text" name="Applicant ${num} SSN Last 4" maxlength="4" pattern="\\d{4}" placeholder="XXXX" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Home Address <span class="required">*</span></label>
+                        <input type="text" name="Applicant ${num} Home Address" placeholder="Street, City, State, ZIP" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Annual Income <span class="required">*</span></label>
+                        <input type="number" name="Applicant ${num} Annual Income" min="0" placeholder="$" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Credit Score (Approximate) <span class="required">*</span></label>
+                        <select name="Applicant ${num} Credit Score" required>
+                            <option value="">Select range...</option>
+                            <option>300-579 (Poor)</option>
+                            <option>580-669 (Fair)</option>
+                            <option>670-739 (Good)</option>
+                            <option>740-799 (Very Good)</option>
+                            <option>800-850 (Excellent)</option>
+                        </select>
+                    </div>
+                </div>
+                <h3 style="font-size:0.95rem; margin-top:16px; margin-bottom:12px;">Required Documents</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Proof of Income <span class="required">*</span></label>
+                        <input type="file" name="Applicant ${num} Proof of Income" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bank Statements (3 months) <span class="required">*</span></label>
+                        <input type="file" name="Applicant ${num} Bank Statements" accept=".pdf,.jpg,.jpeg,.png" multiple required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Credit Report <span class="required">*</span></label>
+                        <input type="file" name="Applicant ${num} Credit Report" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Social Security Card <span class="required">*</span></label>
+                        <input type="file" name="Applicant ${num} Social Security Card" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function addApplicant() {
+            if (applicantCount >= 4) return;
+            applicantCount++;
+            document.getElementById('applicantsContainer').insertAdjacentHTML('beforeend', createApplicantHTML(applicantCount));
+            document.getElementById('removeBtn').style.display = applicantCount > 1 ? '' : 'none';
+            if (applicantCount >= 4) {
+                document.querySelector('.applicant-controls .btn-secondary').style.display = 'none';
+            }
+        }
+
+        function removeApplicant() {
+            if (applicantCount <= 1) return;
+            document.getElementById(`applicant-${applicantCount}`).remove();
+            applicantCount--;
+            document.getElementById('removeBtn').style.display = applicantCount > 1 ? '' : 'none';
+            document.querySelector('.applicant-controls .btn-secondary').style.display = '';
+        }
+
+        // Initialize with one applicant
+        addApplicant();
+
+        // Show success screen if redirected back from FormSubmit
+        if (window.location.search.includes('submitted=true') || window.location.hash === '#success') {
+            document.getElementById('leaseForm').style.display = 'none';
+            document.getElementById('successScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
